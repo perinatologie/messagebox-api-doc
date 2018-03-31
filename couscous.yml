@@ -1,0 +1,28 @@
+template:
+    url: https://github.com/perinatologie/perinatologie-couscous-template.git
+
+github:
+    user: perinatologie
+    repo: messagebox-doc
+
+title: MessageBox API
+subTitle: Implementatie handleiding
+
+# The left menu bar
+menu:
+    items:
+        index:
+            text: Inleiding
+            relativeUrl: ./
+        endpoint-get-messages:
+            text: Get messages
+        endpoint-get-message-content:
+            text: Get message content
+        endpoint-send:
+            text: Send message
+        endpoint-archive-message:
+            text: Archive message
+        endpoint-unarchive-message:
+            text: Unarchive message
+        endpoint-properties-add:
+            text: Properties add
