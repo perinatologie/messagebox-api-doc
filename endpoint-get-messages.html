@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>MessageBox API</title>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/monokai-sublime.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand navbar-right hidden-xs" href="https://doc.perinatologie.nl">
+                <img src="https://www.perinatologie.nl/assets/img/perinatologie.nl.png" style="width: 40px; float: left; margin-right: 5px;" />
+                doc.perinatologie.nl
+            </a>
+            <a class="navbar-brand" href="./">
+                MessageBox API
+                <small class="hidden-xs hidden-sm">
+                    Implementatie handleiding
+                </small>
+            </a>
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                                                                                                        <a href="./">
+                                                                                                                    Inleiding
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-get-messages.html">
+                                                                                                                    Get messages
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-get-message-content.html">
+                                                                                                                    Get message content
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-send.html">
+                                                                                                                    Send message
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-archive-message.html">
+                                                                                                                    Archive message
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-unarchive-message.html">
+                                                                                                                    Unarchive message
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-properties-add.html">
+                                                                                                                    Properties add
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                   <h2 id="get-boxnamemessages">[GET] /{boxName}/messages</h2>
+<p>Dit end-point wordt gebruikt om voor een betreffende box de on-gearchiveerde message headers op te vragen.</p>
+<p>Een voorbeeld response:</p>
+<pre><code class="language-json">[
+    {
+        "id": "acKZVvr3sc6x9MT2k-9Q0Q",
+        "subject": "Dit is een voorbeeld bericht",
+        "content_type": "text/markdown",
+        "created_at": "2017-03-01 08:36:13",
+        "seen_at": null,
+        "archived_at": null,
+        "from_username": "johnjohnson",
+        "metadata": "important: true\r\ncolor: red",
+        "from_name": "default",
+        "from_account": "johnjohnson"
+    },
+    {
+        "id": "x9MT2j3SQ0QacKZVvr3sc1",
+        "subject": "Dit is een tweede bericht",
+        "content_type": "text/markdown",
+        "created_at": "2017-03-01 09:12:54",
+        "seen_at": null,
+        "archived_at": null,
+        "from_username": "johnjohnson",
+        "metadata": "important: false",
+        "from_name": "default",
+        "from_account": "johnjohnson"
+    }
+]</code></pre>
+<p>Voor elk bericht worden de volgende velden teruggegeven:</p>
+<ul>
+<li>id: unieke id van dit bericht binnen het Perinatologie.nl netwerk</li>
+<li>subject: bericht onderwerp, net als bij email.</li>
+<li>content_type: soort content, bijvoorbeeld <code>text/markdown</code>, <code>application/pdf</code>, <code>text/plain</code>, <code>hub/dossier</code>, enz</li>
+<li>seen_at: datum/tijd wanneer bericht voor 't eerst gezien is (de content opgehaald).</li>
+<li>archived_at: datum/tijd wanneer bericht door gebruiker is gearchiveerd (na verwerking)</li>
+<li>from_username: gebruikersnaam van de verzender</li>
+<li>metadata: key/value pairs, zelf te bepalen, te gebruiken voor filtering, en applicatie specifieke doeleinden (koppelen dossier bijvoorbeeld)</li>
+<li>from_name: box naam van verzender, tbv reply</li>
+<li>from_accountname: account naam van verzender, tbv reply</li>
+</ul>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    <a href="https://www.perinatologie.nl">perinatologie.nl</a>
+                </p>
+            </div>
+
+                            <a class="github-link" href="https://github.com/perinatologie/messagebox-doc">
+                    <i class="fa fa-github"></i>
+                    Dit document is open-source, bijdragen kan via github.
+                </a>
+            
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

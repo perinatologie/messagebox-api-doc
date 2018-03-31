@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>MessageBox API</title>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/monokai-sublime.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand navbar-right hidden-xs" href="https://doc.perinatologie.nl">
+                <img src="https://www.perinatologie.nl/assets/img/perinatologie.nl.png" style="width: 40px; float: left; margin-right: 5px;" />
+                doc.perinatologie.nl
+            </a>
+            <a class="navbar-brand" href="./">
+                MessageBox API
+                <small class="hidden-xs hidden-sm">
+                    Implementatie handleiding
+                </small>
+            </a>
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                                                                                                        <a href="./">
+                                                                                                                    Inleiding
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-get-messages.html">
+                                                                                                                    Get messages
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-get-message-content.html">
+                                                                                                                    Get message content
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-send.html">
+                                                                                                                    Send message
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-archive-message.html">
+                                                                                                                    Archive message
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-unarchive-message.html">
+                                                                                                                    Unarchive message
+                                    </a>
+                                </li>
+                                                            <li class="active">
+                                                                                                                        <a href="endpoint-properties-add.html">
+                                                                                                                    Properties add
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                   <h2 id="post-boxnamemessagesmessageidpropertiesadd">[POST] /{boxName}/messages/{messageId}/properties/add</h2>
+<p>Voeg een property toe aan de metadata van een bericht. Tbv applicatie-specifieke koppelingen en functionaliteit.</p>
+<pre><code class="language-json">{
+  "name": "color",
+  "value": "green"
+}</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    <a href="https://www.perinatologie.nl">perinatologie.nl</a>
+                </p>
+            </div>
+
+                            <a class="github-link" href="https://github.com/perinatologie/messagebox-doc">
+                    <i class="fa fa-github"></i>
+                    Dit document is open-source, bijdragen kan via github.
+                </a>
+            
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
