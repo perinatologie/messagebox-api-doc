@@ -2,6 +2,6 @@
 id: endpoint-unarchive-message
 ---
 
-## [GET] /{boxName}/messages/{messageId}/unarchive
+## [GET] /{boxName}/messages/{xuid}/unarchive
 
-De-archiveer een bericht
+Door dit endpoint aan te roepen wordt een eerder gearchiveerd bericht weer terug naar status ‘INBOX’ geplaatst.

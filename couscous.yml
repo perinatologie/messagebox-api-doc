@@ -14,14 +14,17 @@ menu:
         index:
             text: Inleiding
             relativeUrl: ./
+        
         content-types:
             text: Content types
         address-formats:
             text: Adres formaten
+        rest-api:
+            text: REST API
         endpoint-get-messages:
-            text: Get messages
-        endpoint-get-message-content:
-            text: Get message content
+            text: Get message list
+        endpoint-get-message:
+            text: Get message
         endpoint-send:
             text: Send message
         endpoint-send-legacy:
@@ -32,3 +35,7 @@ menu:
             text: Unarchive message
         endpoint-properties-add:
             text: Properties add
+        viewer-api:
+            text: Viewer API
+        ondersteuning:
+            text: Ondersteuning

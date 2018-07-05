@@ -2,6 +2,6 @@
 id: endpoint-archive-message
 ---
 
-## [GET] /{boxName}/messages/{messageId}/archive
+## [GET] /{boxName}/messages/{xuid}/archive
 
-Archiveer een bericht
+Door dit endpoint aan te roepen wordt het betreffende bericht gearchiveerd.
