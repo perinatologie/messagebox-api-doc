@@ -6,12 +6,16 @@ id: get-messages
 
 Dit endpoint geeft een lijst van beschikbare berichten weer in het eerder beschreven JSON format.
 
+### Status filter
+
 Standaard worden hier de berichten uit de INBOX getoond. Er kunnen ook berichten uit andere boxen worden opgevraagd mbv de `status` query parameter. Bijvoorbeeld:
 
 * ?status=ARCHIVED: verwerkte berichten
 * ?status=OUTBOX: te verzenden berichten
 * ?status=SENT: verzonden berichten
 * ?status=ERROR: mislukte verzendingen
+
+### Voorbeeld response
 
 Een voorbeeld response met 2 berichten:
 
@@ -72,7 +76,9 @@ Een voorbeeld response met 2 berichten:
 ]
 ```
 
-Elk bericht heeft de volgende velden:
+### Veld beschrijving messages
+
+Elke message heeft de volgende velden:
 * `xuid`: een unieke identifier (zie www.xuid.org voor meer informatie)
 * `direction`: IN of OUT (is dit een inkomend of uitgaand bericht).
 * `status`: INBOX, ARCHIVED, OUTBOX of SENT
@@ -83,6 +89,8 @@ Elk bericht heeft de volgende velden:
 * `envelope`: een universeel formaat envelope voor de daadwerkelijke inhoud. Een deel van de complexiteit van het ondersteunen van meerdere berichtenboxen is dat elk formaat en elke dienst zijn eigen envelope heeft. MessageBox maakt dit generiek zodat er maar 1 formaat hoeft te worden ondersteund.
 
 
+### Veld beschrijving envelope
+
 De envelop bevat de volgende gegevens:
 * `id`: Unieke identifier zoals bepaald door de dienst. Kan gebruikt worden om support cases na te vragen bij de dienst leverancier, maar er wordt afgeraden deze ID als key in eigen EPDs te gebruiken. Kies voor dat doeleind de message.xuid.
 * `subject`: Onderwerp van het bericht om te tonen in een berichten overzicht.
@@ -91,3 +99,18 @@ De envelop bevat de volgende gegevens:
 * `to`: 1 of meerdere ontvangers, ook ovv `displayName` en `address`.
 * `headers`: Hierin worden optioneel headers (key+value) ingevuld wanneer de gekoppelde dienst deze aanbiedt.
 * `contentType`: het soort inhoud binnen deze envelope. 
+
+### Property filters
+
+Dit endpoint kan ook alleen messages teruggeven waarvan de properties overeenkomen met een bepaald filter.
+
+Voeg bijvoorbeeld `?_color=red` toe aan de endpoint URL om alleen messages terug te krijgen
+waarvan de property `color` op `red` staat.
+
+Deze functie kan gebruikt worden om applicatie-specifieke koppelingen te leggen:
+
+* Koppel een bericht aan een client, dossier of andere applicatie-entiteit
+* Houd applicatie specifieke statussen bij
+
+Hierdoor is het niet nodig om de messages te synchroniseren met een applicatie database.
+De messages kunnen verrijkt worden met properties om de benodigde eigen functionaliteit te implementeren.
