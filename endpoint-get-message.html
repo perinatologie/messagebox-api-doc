@@ -59,7 +59,7 @@
                                                                                                                     Get message list
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="active">
                                                                                                                         <a href="endpoint-get-message.html">
                                                                                                                     Get message
                                     </a>
@@ -74,7 +74,7 @@
                                                                                                                     Send message (legacy)
                                     </a>
                                 </li>
-                                                            <li class="active">
+                                                            <li class="">
                                                                                                                         <a href="endpoint-archive-message.html">
                                                                                                                     Archive message
                                     </a>
@@ -105,8 +105,9 @@
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                   <h2 id="get-boxnamemessagesxuidarchive">[GET] /{boxName}/messages/{xuid}/archive</h2>
-<p>Door dit endpoint aan te roepen wordt het betreffende bericht gearchiveerd.</p>
+                   <h2 id="get-boxnamemessagesxuid">[GET] /{boxName}/messages/{xuid}</h2>
+<p>Wanneer via de berichtenlijst een of meerdere berichten zijn gevonden kunnen de xuids worden gebruikt om de details van het bericht op te vragen. De response is identiek aan die van de berichten lijst, maar bevat via deze endpoint ook de bericht inhoud.</p>
+<p>Wij adviseren om niet direct zelf ondersteuning voor de content te implementeren, in veel gevallen is het veel makkelijker om de berichten te tonen mbv de <a href="viewer-api.html">Viewer API</a>.</p>
                 </section>
 
             </div>

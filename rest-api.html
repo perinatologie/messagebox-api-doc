@@ -74,7 +74,7 @@
                                                                                                                     Send message (legacy)
                                     </a>
                                 </li>
-                                                            <li class="active">
+                                                            <li class="">
                                                                                                                         <a href="endpoint-archive-message.html">
                                                                                                                     Archive message
                                     </a>
@@ -105,8 +105,18 @@
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                   <h2 id="get-boxnamemessagesxuidarchive">[GET] /{boxName}/messages/{xuid}/archive</h2>
-<p>Door dit endpoint aan te roepen wordt het betreffende bericht gearchiveerd.</p>
+                   <h2 id="rest-api">REST API</h2>
+<h3 id="authenticatie">Authenticatie</h3>
+<p>Elk request naar de API moet voorzien worden van de <strong>API key</strong> en <strong>API secret</strong> in de Basic Auth headers. Deze credentials bepalen tot welke boxen er toegang is.</p>
+<p><em>Let op</em>: de API credentials zijn enkel nodig bij het aanroepen van de REST API. Bij de <a href="viewer-api.html">Viewer API</a> verloopt de authenticatie middels <a href="https://jwt.io">JWT</a>.</p>
+<h3 id="http-status-codes">HTTP Status codes</h3>
+<p>Als REST API wordt gebruik gemaakt van standaard HTTP status codes:</p>
+<ul>
+<li>200 - OK: Success</li>
+<li>404 - Not found: wanneer er bijvoorbeeld een bericht of box wordt bevraagd die niet bestaat.</li>
+<li>400 - Bad request: wanneer het request ongeldig is.</li>
+</ul>
+<p>De responses van de API zijn altijd in JSON format. De inhoud is afhankelijk van de status code.</p>
                 </section>
 
             </div>

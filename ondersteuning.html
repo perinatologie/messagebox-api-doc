@@ -50,13 +50,18 @@
                                     </a>
                                 </li>
                                                             <li class="">
-                                                                                                                        <a href="endpoint-get-messages.html">
-                                                                                                                    Get messages
+                                                                                                                        <a href="rest-api.html">
+                                                                                                                    REST API
                                     </a>
                                 </li>
-                                                            <li class="active">
-                                                                                                                        <a href="endpoint-get-message-content.html">
-                                                                                                                    Get message content
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-get-messages.html">
+                                                                                                                    Get message list
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="endpoint-get-message.html">
+                                                                                                                    Get message
                                     </a>
                                 </li>
                                                             <li class="">
@@ -84,18 +89,35 @@
                                                                                                                     Properties add
                                     </a>
                                 </li>
+                                                            <li class="">
+                                                                                                                        <a href="viewer-api.html">
+                                                                                                                    Viewer API
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                                                                                                        <a href="ondersteuning.html">
+                                                                                                                    Ondersteuning
+                                    </a>
+                                </li>
                                                     </ul>
 
                     </nav>
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                   <h2 id="get-boxnamemessagesmessageidcontent">[GET] /{boxName}/messages/{messageId}/content</h2>
-<p>Dit end-point wordt gebruikt om de daadwerkelijke berichten inhoud op te halen.</p>
-<p>De response geeft de rauwe bericht content terug, en hangt dus af van de <code>content_type</code>.
-In sommige gevallen een text response, in anderen een PDF bijvoorbeeld.</p>
-<p>Na ophalen van de content wordt bij de eerste keer automatisch de <code>seen_at</code> van dit bericht gezet
-naar datum+tijd van dat moment.</p>
+                   <h2 id="ondersteuning">Ondersteuning</h2>
+<h3 id="tips-voor-implementatie">Tips voor implementatie</h3>
+<ul>
+<li>Gebruik de REST API om berichtenlijsten te tonen, en gebruik de Viewer API om de berichten te tonen. Op deze manier hoef je zelf geen ondersteuning te maken voor alle formaten die er in de zorg worden uitgewisseld. De berichtenlijst is ook universeel (onafhankelijk van formaat, afzender of gekoppelde dienst) en daardoor erg eenvoudig te tonen binnen de applicatie.</li>
+<li>Sla berichten niet op in eigen systeem. Laat deze staan bij MessageBox en maak gebruik van de API en Viewer om ze te tonen. Dat scheelt uitdagingen tbv synchroniseren, updaten e.d.</li>
+<li>De Viewer bied ondersteuning voor iFrame Resizer (<a href="https://github.com/davidjbradshaw/iframe-resizer">https://github.com/davidjbradshaw/iframe-resizer</a>) Gebruik deze library in de aanroepende pagina om automatisch de iframe hoogte aan te passen naar de inhoud. Zo is het voor de eindgebruiker niet meer zichtbaar dat er gebruik van een iframe wordt gemaakt, en bereik je een naadloze integratie in het EPD.</li>
+<li>Look &amp; Feel van de viewer is op verzoek ook aan te passen naar de branding van het EPD. De Viewer werkt met Bootstrap 3 basis CSS, en kan middels eigen theme overrides worden aangepast naar eigen stijl. Op deze manier zijn lettertypen, kleuren e.d. In de viewer aan te passen naar het EPD.
+Sla de JWTs niet op, deze zijn slechts beperkt houdbaar en mogelijk gekoppeld aan de sessie, IP e.d. Van de gebruiker. Hierdoor zal de link niet in andere sessies te gebruiken zijn.</li>
+</ul>
+<h3 id="voorbeeld-client-implementatie">Voorbeeld client implementatie</h3>
+<p>Op GitHub (<a href="https://github.com/linkorb/messagebox-client-php">https://github.com/linkorb/messagebox-client-php</a>) is de broncode van een voorbeeld PHP implementatie in te zien. Mogelijk bied deze code hulp bij het implementeren van de client library in andere programmeertalen.</p>
+<h3 id="contact">Contact</h3>
+<p>Bij vragen tijdens het implementeren van de MessageBox API kun je altijd contact met ons opnemen voor support. Stuur een mailtje naar info@perinatologie.nl, en we kijken graag met je mee!</p>
                 </section>
 
             </div>

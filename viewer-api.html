@@ -74,7 +74,7 @@
                                                                                                                     Send message (legacy)
                                     </a>
                                 </li>
-                                                            <li class="active">
+                                                            <li class="">
                                                                                                                         <a href="endpoint-archive-message.html">
                                                                                                                     Archive message
                                     </a>
@@ -89,7 +89,7 @@
                                                                                                                     Properties add
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="active">
                                                                                                                         <a href="viewer-api.html">
                                                                                                                     Viewer API
                                     </a>
@@ -105,8 +105,25 @@
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                   <h2 id="get-boxnamemessagesxuidarchive">[GET] /{boxName}/messages/{xuid}/archive</h2>
-<p>Door dit endpoint aan te roepen wordt het betreffende bericht gearchiveerd.</p>
+                   <h2 id="viewer-api-vele-berichtformaten---1-viewer">Viewer API: vele berichtformaten - 1 viewer</h2>
+<p>MessageBox ondersteund een breed aanbod aan content types. Van EDI berichten tot XML, HL7, HTML, Markdown en nog veel meer. Ook komen hier continu nieuwe formaten bij. Om het eenvoudig te maken voor EPD leveranciers om deze grote wir-war aan formaten toch heel makkelijk te ondersteunen bied MessageBox een <strong>Viewer API</strong>.</p>
+<p>Het idee is dat het EPD aleen de berichten lijsten ophaalt via <a href="rest-api.html">REST API</a>, en vervolgens de berichten toont via deze Viewer API.</p>
+<h3 id="viewer-integratie-opties">Viewer integratie opties</h3>
+<p>De Viewer kan op verschillende manieren gebruikt worden:</p>
+<ul>
+<li>Door een bericht in een nieuw venster te openen (goed voor desktop en mobile applicaties)</li>
+<li>Door het bericht in een iframe te openen (voor web-applicaties)</li>
+<li>Door het bericht (onafhankelijk van de bron) in HTML formaat te downloaden en te tonen binnen de web-, desktop-, of mobile applicatie.</li>
+</ul>
+<p>Wij adviseren gebruik te maken van methode 2, de iframe methode. De reden hiervan is dat een EPD vaak erg privacy gevoelige informatie bevat. Wanneer een applicatie zelf HTML uit externe bron toont binnen de eigen applicatie, dan ontstaan er al snel beveiligingsrisico's zoals Script Injection. Door gebruik te maken van de iframe methode is dit risico er niet en blijven eventueel onveilige scripts binnen de iframe en krijgen geen toegang tot de applicatie zelf. Deze methode wordt ook veel gebruikt in bijvoorbeeld webmail applicaties zoals Gmail, Hotmail e.d.</p>
+<h3 id="hoe-gebruik-je-de-viewer-api">Hoe gebruik je de Viewer API?</h3>
+<p>Wanneer je via de API een bericht of berichtenlijst ophaalt, dan bevatten deze een <code>xuid</code> en een <code>jwt</code>. Deze gebruik je om de <strong>Viewer URL</strong> samen te stellen:</p>
+<pre><code class="language-php">$viewerUrl = $baseUrl . ‘/’ . $boxName . ‘/messages/’ . $xuid . ‘?jwt=’ . $jwt;</code></pre>
+<p>De <code>$baseUrl</code> van de viewer van perinatologie.nl is <code>https://post.perinatologie.nl</code>.</p>
+<p>Door deze viewerUrl in een iframe of WebView te gebruiken wordt het bericht weergegeven. Bijvoorbeeld:</p>
+<pre><code class="language-html">&lt;iframe src=”{$viewerUrl}” style=”width: 100%;”&gt;&lt;/iframe&gt;</code></pre>
+<p>De JWT verloopt automatisch waardoor de URL slechts voor een beperkte periode geldig is.
+Het is dus niet aan te raden de url of JWT op te slaan in de applicatie, maar deze altijd op te vragen via de REST API op 't moment dat deze aan de eindgebruiker getoond moet worden.</p>
                 </section>
 
             </div>
