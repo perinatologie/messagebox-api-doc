@@ -10,15 +10,15 @@ Verzend een bericht. In de POST body wordt een enveloppe gestuurd in de volgende
 {
   "id": "message1",
   "subject": "Hallo Jill",
-  "from": [
+  "from": {
     "displayName": "John Johnson",
     "address": "johnjohnson"
-  ],
+  },
   "to": [
-      [
+      {
         "displayName": "Jill Jackson",
         "address": "jilljackson"
-      ]
+      }
   ],
   "dateTime": "2018-03-28 15:30:54",
   "contentType": "text/plain",
