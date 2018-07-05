@@ -20,6 +20,8 @@ menu:
             text: Get message content
         endpoint-send:
             text: Send message
+        endpoint-send-legacy:
+            text: Send message (legacy)
         endpoint-archive-message:
             text: Archive message
         endpoint-unarchive-message:
