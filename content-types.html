@@ -39,7 +39,7 @@
                                                                                                                     Inleiding
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="active">
                                                                                                                         <a href="content-types.html">
                                                                                                                     Content types
                                     </a>
@@ -59,7 +59,7 @@
                                                                                                                     Get message content
                                     </a>
                                 </li>
-                                                            <li class="active">
+                                                            <li class="">
                                                                                                                         <a href="endpoint-send.html">
                                                                                                                     Send message
                                     </a>
@@ -90,40 +90,46 @@
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                   <h2 id="post-boxnamesend">[POST] /{boxName}/send</h2>
-<p>Verzend een bericht. In de POST body wordt een enveloppe gestuurd in de volgende JSON structuur:</p>
-<pre><code class="language-json">{
-  "id": "message1",
-  "subject": "Hallo Jill",
-  "from": [
-    "displayName": "John Johnson",
-    "address": "johnjohnson"
-  ],
-  "to": [
-      [
-        "displayName": "Jill Jackson",
-        "address": "jilljackson"
-      ]
-  ],
-  "dateTime": "2018-03-28 15:30:54",
-  "contentType": "text/plain",
-  "content": "Beste Jill,\nDit is een voorbeeld bericht.\nmvg John"
-}</code></pre>
-<h3 id="veld-toelichting">Veld toelichting:</h3>
-<ul>
-<li><code>id</code>: Unieke identificatie voor het bericht bij afzender. Wordt niet verwerkt, maar is te gebruiken indien er vragen over een bepaald bericht zijn bij de afzender.</li>
-<li><code>subject</code>: dit is de onderwerp regel die in de applicatie van de ontvanger getoond zal worden in de lijst. Betreft het bericht een bepaalde client of dossier, dan is het te adviseren deze in de subject te plaatsen.</li>
-<li><code>from</code>: Een bericht heeft maximaal 1 afzender. De afzender heeft een <code>displayName</code> welke in de berichtenlijst getoond wordt, en een <code>address</code>. Lees meer over <a href="address-formats.html">adresen formaten</a>.</li>
-<li><code>to</code>: Een bericht heeft minimaal 1, maar mogelijk meerdere ontvangers. Elke ontvangers heeft een <code>displayName</code> welke in de berichtenlijst getoond wordt, en een <code>address</code>. Lees meer over [addressen].</li>
-<li><code>contentType</code>: Dit veld geeft middels een standaard mime-type aan welke inhoud er in het <code>content</code> veld is geplaatst. Lees meer over <a href="content-types.html">content types</a>.</li>
-<li><code>content</code>: De daadwerkelijke bericht inhoud. Formaat is afhankelijk van het <code>contentType</code> van dit bericht.</li>
-</ul>
-<h3 id="verwerking">Verwerking</h3>
-<p>Een bericht dat wordt ingediend het <code>send</code> endpoint zal in de <code>OUTBOX</code> van de afzender (from address)
-worden geplaatst.
-Een achtergrond process verwerkt vervolgens periodiek alle berichten in de OUTBOX en verzend deze
-op een methode die bepaald wordt op basis van het address formaat (zie ook <a href="addressen">addressen</a>).
-Na verzending wordt het betreffende bericht van de <code>OUTBOX</code> naar de <code>SENT</code> box verplaatst.</p>
+                   <h2 id="content-types">Content types</h2>
+<p>MessageBox kan berichten in verschillende formaten verzenden, ontvangen en tonen.</p>
+<p>Elk bericht in MessageBox heeft een <code>content-type</code>. Deze wordt bijvoorbeeld meegestuurd bij het aanroepen van het <a href="endpoint-send.html">send endpoint</a>.</p>
+<p>Afhankelijk van het <code>content-type</code> zal in de viewer API andere presentatie methoden worden gebruikt zodat er steeds nieuwe berichtformaten ondersteund kunnen worden.</p>
+<h3 id="textplain">text/plain</h3>
+<p>In dit type bericht wordt in het <code>content</code> veld  platte tekst geplaatst, evt met line-breaks.</p>
+<p>In de viewer wordt deze tekst as-is getoond.</p>
+<p>Dit type bericht is voor simpele berichten tussen personen.</p>
+<h3 id="textmarkdown">text/markdown</h3>
+<p>In dit type bericht wordt in het <code>content</code> veld een markdown tekst geplaatst. Lees meer over <a href="https://en.wikipedia.org/wiki/Markdown">markdown</a></p>
+<p>In de viewer wordt deze tekst als Markdown gerendered met headers, bold, italic, bullet lists, links e.d.</p>
+<p>Dit type bericht is voor simpele berichten tussen personen met eenvoudige opmaak.</p>
+<h3 id="texthtml">text/html</h3>
+<p>In dit type bericht wordt in het <code>content</code> veld HTML geplaatst.</p>
+<p>In de viewer wordt deze HTML as-is getoond.</p>
+<p>Dit type bericht is voor geavanceerde opmaak in berichten tussen personen.</p>
+<h3 id="textxml">text/xml</h3>
+<p>In dit type bericht wordt in het <code>content</code> veld ruwe XML geplaatst.</p>
+<p>In de viewer wordt deze XML as-is getoond.</p>
+<p>Dit type bericht is voor gestructureerde uitwisseling tussen applicaties waarvoor geen specifieke content-type is gedefinieerd.</p>
+<h3 id="applicationvndformidableinstancejson">application/vnd.formidable.instance+json</h3>
+<p>Dit type bericht bevat in het <code>content</code> veld een JSON string volgens de structuur van Formidable.</p>
+<p>Dit type bericht is bruikbaar voor het ontvangen van beveiligde online web-formulieren.</p>
+<h3 id="applicationvndnlperinatologieresourcexml">application/vnd.nl.perinatologie.resource+xml</h3>
+<p>Dit type bericht bevat in het <code>content</code> veld een XML string volgens het Hub XML Formaat van perinatologie.nl <a href="https://doc.perinatologie.nl/formaat-doc/">lees meer</a>.</p>
+<h3 id="applicationvndedimedvrixml-medvri">application/vnd.edi.medvri+xml (MEDVRI)</h3>
+<p>Dit type bericht bevat in het <code>content</code> veld een XML string volgens het Zorgmail MEDVRY formaat.</p>
+<p>In dit format kunnen bijvoorbeeld gedetaileerde contact gegevens van ontvanger, afzender en onderwerp (client) worden meegestuurd. Denk hierbij aan telefoon nummers, geboortedatum, BSN e.d.</p>
+<p>De viewer zal deze meta-data automatisch presenteren in de HTML weergave.</p>
+<p>In het MEDVRI formaat is ruimte voor een notitie in vrije tekst.</p>
+<h3 id="applicationvndedimedlabxml-medlab">application/vnd.edi.medlab+xml (MEDLAB)</h3>
+<p>Dit type bericht bevat in het <code>content</code> veld een XML string volgens het Zorgmail MEDLAB formaat.</p>
+<p>In dit format kunnen bijvoorbeeld gedetaileerde contact gegevens van ontvanger, afzender en onderwerp (client) worden meegestuurd. Denk hierbij aan telefoon nummers, geboortedatum, BSN e.d.</p>
+<p>In het MEDLAB formaat is ruimte voor gestructureerde uitslag gegevens. Denk hierbij aan onderzoek codes, boven/ondergrens van normaal waarden, en de ruwe uitslag ovv meeteenheden.</p>
+<p>De viewer zal deze meta-data automatisch presenteren in de HTML weergave.</p>
+<h3 id="applicationvndedimedspexml-medspe">application/vnd.edi.medspe+xml (MEDSPE)</h3>
+<p>Dit type bericht bevat in het <code>content</code> veld een XML string volgens het Zorgmail MEDSPE formaat.</p>
+<p>In dit format kunnen bijvoorbeeld gedetaileerde contact gegevens van ontvanger, afzender en onderwerp (client) worden meegestuurd. Denk hierbij aan telefoon nummers, geboortedatum, BSN e.d.</p>
+<p>In het MEDSPE formaat is ruimte voor gestructureerde gegevens over de specialist, en een notitie.</p>
+<p>De viewer zal deze meta-data automatisch presenteren in de HTML weergave.</p>
                 </section>
 
             </div>
