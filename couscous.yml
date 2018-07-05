@@ -3,7 +3,7 @@ template:
 
 github:
     user: perinatologie
-    repo: messagebox-doc
+    repo: messagebox-api-doc
 
 title: MessageBox API
 subTitle: Implementatie handleiding
