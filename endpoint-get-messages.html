@@ -85,8 +85,8 @@
                                     </a>
                                 </li>
                                                             <li class="">
-                                                                                                                        <a href="endpoint-properties-add.html">
-                                                                                                                    Properties add
+                                                                                                                        <a href="endpoint-properties.html">
+                                                                                                                    Properties
                                     </a>
                                 </li>
                                                             <li class="">
@@ -107,6 +107,7 @@
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
                    <h2 id="get-boxnamemessages">[GET] /{boxName}/messages</h2>
 <p>Dit endpoint geeft een lijst van beschikbare berichten weer in het eerder beschreven JSON format.</p>
+<h3 id="status-filter">Status filter</h3>
 <p>Standaard worden hier de berichten uit de INBOX getoond. Er kunnen ook berichten uit andere boxen worden opgevraagd mbv de <code>status</code> query parameter. Bijvoorbeeld:</p>
 <ul>
 <li>?status=ARCHIVED: verwerkte berichten</li>
@@ -114,6 +115,7 @@
 <li>?status=SENT: verzonden berichten</li>
 <li>?status=ERROR: mislukte verzendingen</li>
 </ul>
+<h3 id="voorbeeld-response">Voorbeeld response</h3>
 <p>Een voorbeeld response met 2 berichten:</p>
 <pre><code class="language-json">[
     {
@@ -169,7 +171,8 @@
         }
     }
 ]</code></pre>
-<p>Elk bericht heeft de volgende velden:</p>
+<h3 id="veld-beschrijving-messages">Veld beschrijving messages</h3>
+<p>Elke message heeft de volgende velden:</p>
 <ul>
 <li><code>xuid</code>: een unieke identifier (zie www.xuid.org voor meer informatie)</li>
 <li><code>direction</code>: IN of OUT (is dit een inkomend of uitgaand bericht).</li>
@@ -180,8 +183,9 @@
 <code>application/vnd.messagebox.envelope+json</code> zijn. Dit wil zeggen dat dit bericht een messagebox envelope bevat in JSON formaat. De inhoud van de envelope is te lezen in het volgende veld:</li>
 <li><code>envelope</code>: een universeel formaat envelope voor de daadwerkelijke inhoud. Een deel van de complexiteit van het ondersteunen van meerdere berichtenboxen is dat elk formaat en elke dienst zijn eigen envelope heeft. MessageBox maakt dit generiek zodat er maar 1 formaat hoeft te worden ondersteund.</li>
 </ul>
-<p>
-De envelop bevat de volgende gegevens:</p>
+<p></p>
+<h3 id="veld-beschrijving-envelope">Veld beschrijving envelope</h3>
+<p>De envelop bevat de volgende gegevens:</p>
 <ul>
 <li><code>id</code>: Unieke identifier zoals bepaald door de dienst. Kan gebruikt worden om support cases na te vragen bij de dienst leverancier, maar er wordt afgeraden deze ID als key in eigen EPDs te gebruiken. Kies voor dat doeleind de message.xuid.</li>
 <li><code>subject</code>: Onderwerp van het bericht om te tonen in een berichten overzicht.</li>
@@ -191,6 +195,17 @@ De envelop bevat de volgende gegevens:</p>
 <li><code>headers</code>: Hierin worden optioneel headers (key+value) ingevuld wanneer de gekoppelde dienst deze aanbiedt.</li>
 <li><code>contentType</code>: het soort inhoud binnen deze envelope. </li>
 </ul>
+<h3 id="property-filters">Property filters</h3>
+<p>Dit endpoint kan ook alleen messages teruggeven waarvan de properties overeenkomen met een bepaald filter.</p>
+<p>Voeg bijvoorbeeld <code>?_color=red</code> toe aan de endpoint URL om alleen messages terug te krijgen
+waarvan de property <code>color</code> op <code>red</code> staat.</p>
+<p>Deze functie kan gebruikt worden om applicatie-specifieke koppelingen te leggen:</p>
+<ul>
+<li>Koppel een bericht aan een client, dossier of andere applicatie-entiteit</li>
+<li>Houd applicatie specifieke statussen bij</li>
+</ul>
+<p>Hierdoor is het niet nodig om de messages te synchroniseren met een applicatie database.
+De messages kunnen verrijkt worden met properties om de benodigde eigen functionaliteit te implementeren.</p>
                 </section>
 
             </div>
